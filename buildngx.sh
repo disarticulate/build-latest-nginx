@@ -3,36 +3,17 @@
 #       WARNING -  Do not copy/paste this script from browser. Download it via curl/git/wget or patch will fail.
 #   
 <?php
-# 
-# 
-# Purposes:
-# 
-#  1. Download  and build:
-// - latest release of nginx
-// - http push stream module (optional)
-// - sticky upstream module (optional)
-// - sysvint startup script for nginx.
-// 
-#  2. Change server string (optional)
-// 
-// 
-
-
-// config start:
-
-
 /*
 *
 *        Check  build dir and configure options. Change as you need. do not leave empty lines, leave space before ending \
 * 
 */
 
-
 $build_dir = '/opt/nginxsrc';  // where this script should operate. 
+
 
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
-
 
 $configure = "./configure \
 --prefix=/etc/nginx \
@@ -129,7 +110,6 @@ if (file_exists($build_dir_ngx)) {
     `mv $build_dir_ngx $build_dir_ngx.'_old_'.$stamp`;
 }
 mkdir($build_dir_ngx, 0664, true);
-
 
 chdir($build_dir);
 `curl {$downloadurl}|tar xz`;
