@@ -18,10 +18,10 @@ It takes less than a minute to download and build everything.
 
 Usage:
 
- 1. Clone this repo or donwload the script via curl/wget. <i>Do not copy/paste from browser.</i>
+ 1. Clone this repo or download the script via curl/wget. <i>Do not copy/paste it from browser.</i>
 
  2. Review the configure lines. You might want to add/remove modules/options.
 
- 3. Run and answer the questions.
+ 3. Run and answer the questions. It will ask for push & sticky modules and what server string you want.
 
 
