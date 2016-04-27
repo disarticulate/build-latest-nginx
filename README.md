@@ -13,3 +13,12 @@
   
 Optionally it allows to change the server string.
 
+It takes less than a minute to download and build everything.
+
+
+Usage:
+1. Clone this repo or donwload the script via curl/wget. Do not copy/paste from browser.
+2. Review the configure lines. You might want to add/remove modules/options.
+3. Run and answer the questions.
+
+
