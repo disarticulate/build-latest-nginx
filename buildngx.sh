@@ -1,11 +1,12 @@
 #!/usr/bin/php
 #
+#       
 #       WARNING -  Do not copy/paste this script from browser. Download it via curl/git/wget or patch will fail.
 #   
 <?php
-/*
-*
-*        Check  build dir and configure options. Change as you need. do not leave empty lines, leave space before ending \
+/*      https://github.com/p34eu/debian-latest-nginx
+*       
+*       Check  build dir and configure options. Change as you need. do not leave empty lines, leave space before ending \
 * 
 */
 
@@ -44,8 +45,7 @@ $configure = "./configure \
 --with-threads \
 --with-stream";
 
-/*
-end of config
+/*                            end of config
 ------------------------------------------------------------------------------
 */
 
@@ -103,7 +103,7 @@ if (!$build_init = ask('Build sysvinit script from https://github.com/Fleshgrind
 
 $build_dir_ngx = $build_dir . DIRECTORY_SEPARATOR . 'nginx-' . $lv['version'];
 
-echo "Diving to ", $build_dir_ngx, PHP_EOL;
+echo PHP_EOL,"Diving to ", $build_dir_ngx, PHP_EOL;
 
 if (file_exists($build_dir_ngx)) {
     $stamp = time();
@@ -174,6 +174,7 @@ passthru($configure);
 passthru('make');
 
 $nor=$_SERVER['USERNAME']=='root'?"":"Please make sure that your user {$_SERVER['USERNAME']} can write to the install destinations.";
+
 if(ask("Configure done. Do you want to install it (make install) ?".PHP_EOL.$nor.PHP_EOL."(y|n)", 1,0)){
     passthru('make install');
 }else{
@@ -193,6 +194,7 @@ if (!file_exists('/var/cache/nginx')) {
 }
 
 echo "Recommendation: set worker_processes to ";
+
 echo `grep processor /proc/cpuinfo | wc -l`;
 
 exit(PHP_EOL);
