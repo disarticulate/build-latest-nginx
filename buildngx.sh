@@ -4,7 +4,8 @@
 #       WARNING -  Do not copy/paste this script from browser. Download it via curl/git/wget or patch will fail.
 #   
 <?php
-/*      https://github.com/p34eu/debian-latest-nginx
+/*    
+*                                   https://github.com/p34eu/debian-latest-nginx
 *       
 *       Check  build dir and configure options. Change as you need. do not leave empty lines, leave space before ending \
 * 
