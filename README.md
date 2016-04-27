@@ -1,6 +1,6 @@
 # debian-latest-nginx
 
-Php script to download and build at once:
+ Script to download and build at once:
 
   *  <a href="http://nginx.org/download">nginx</a>
   
@@ -11,3 +11,5 @@ Php script to download and build at once:
   *  <a href="https://github.com/Fleshgrinder/nginx-sysvinit-script.git">sysvinit script for debian</a>
   
   
+Optionally it allows to change the server string.
+
