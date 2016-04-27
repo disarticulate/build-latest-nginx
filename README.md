@@ -25,7 +25,7 @@ Usage:
 
  3. Run <code>php buildngx.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
 
-Please make sure that  <code>/var/cache/nginx</code> exits.
+Please make sure that  <code>/var/cache/nginx</code> exists, if you are going to start  the server for first time.
 
 
 
