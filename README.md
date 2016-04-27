@@ -23,6 +23,6 @@ Usage:
 
  2. Review the configure lines. You might want to add/remove modules/options.
 
- 3. Run <code> php build.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
+ 3. Run <code>php buildngx.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
 
 
