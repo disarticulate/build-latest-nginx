@@ -11,7 +11,8 @@
   *  <a href="https://github.com/Fleshgrinder/nginx-sysvinit-script.git">sysvinit script for debian</a> (optional)
   
   
-Optionally it allows to change the server string.
+Optionally it allows to change the server string returned in http headers.
+
 
 It takes less than a minute to download and build everything.
 
@@ -22,6 +23,6 @@ Usage:
 
  2. Review the configure lines. You might want to add/remove modules/options.
 
- 3. Run and answer the questions. It will ask for push & sticky modules and what server string you want.
+ 3. Run <code> php build.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
 
 
