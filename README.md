@@ -11,7 +11,7 @@
   *  <a href="https://github.com/Fleshgrinder/nginx-sysvinit-script.git">sysvinit script for debian</a> (optional)
   
   
-Optionally it allows to change the server string returned in http headers.
+Optionally it allows to change the <b>server string</b> returned in http headers.
 
 
 It takes less than a minute to download and build everything.
