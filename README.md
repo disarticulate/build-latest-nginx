@@ -2,12 +2,12 @@
 
 Php script to download and build at once:
 
-  * nginx <a href="http://nginx.org/download">link</a>
+  *  <a href="http://nginx.org/download">nginx</a>
   
-  * push-stream-module <a href="/wandenberg/nginx-push-stream-module.git">link</a>
+  *  <a href="http://github.com/wandenberg/nginx-push-stream-module.git">push-stream-module</a>
   
-  * nginx-sticky-module <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">link</a>
+  *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx-sticky-module</a>
   
-  * sysvinit script for debian
+  *  <a href="https://github.com/Fleshgrinder/nginx-sysvinit-script.git">sysvinit script for debian</a>
   
   
