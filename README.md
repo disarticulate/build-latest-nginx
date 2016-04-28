@@ -1,4 +1,4 @@
-# debian-latest-nginx
+# debian-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/debian-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/debian-latest-nginx)
 
  Script to download and build at once:
 
