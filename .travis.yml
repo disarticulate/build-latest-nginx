@@ -3,4 +3,6 @@ language: php
 script:
     - php buildngx.sh  -p
 php:
-  - '5.6'
+  - '5.4'
+  - hhvm
+  - nightly
