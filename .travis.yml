@@ -1,7 +1,8 @@
 language: php
 sudo: required
 dist: trusty
-
+script:
+    - php buildngx.sh  -h
 php:
   - '5.4'
   - '5.5'
