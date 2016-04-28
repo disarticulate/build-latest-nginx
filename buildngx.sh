@@ -1,18 +1,37 @@
 #!/usr/bin/php
-#
-#       
-#       WARNING -  Do not copy/paste this script from browser. Download it via curl/git/wget or patch will fail.
-#   
 <?php
 /*    
-*                                   https://github.com/p34eu/debian-latest-nginx
+*       https://github.com/p34eu/debian-latest-nginx
 *       
-*       Check  build dir and configure options. Change as you need. do not leave empty lines, leave space before ending \
-* 
+*       Check  build dir and configure options.
+*       Change as you need. do not leave empty lines, leave space before ending \
+*
+*
+*       WARNING -  Do not copy/paste this script from browser.
+*       Download it via curl/git/wget or patch will fail.
+*
+*
 */
 
-$build_dir = '/opt/nginxsrc';  // where this script should operate. 
+$build_dir = '/opt/nginxsrc';  // where this script should operate.
 
+$options=getopt("sqh",['s','q','h']);
+
+$quiet      =   isset($options['q']);
+$showonly   =   isset($options['s']);
+
+
+if($showonly){
+    echo latest()['version'];
+    exit(PHP_EOL);
+}
+
+if(isset($options['h'])){
+    echo "Options:".PHP_EOL;
+    echo "-h, --h  this message.".PHP_EOL;
+    echo "-s, --s  Show latest available nginx version and exit".PHP_EOL;
+    echo "-q, --q  Don't ask any questions. Build all modules, do not change server string.".PHP_EOL;
+}
 
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
@@ -51,7 +70,7 @@ $configure = "./configure \
 */
 
 
-$n = [];
+
 function ask($q, $yn = false, $abort = true)
 {
     echo $q . PHP_EOL;
@@ -73,33 +92,47 @@ function ask($q, $yn = false, $abort = true)
     }
     return $line;
 }
-
-// get current nginx version
-exec("curl -s http://nginx.org/download/|grep \"tar.gz<\"|grep nginx|sed 's/.*href=\"//'|sed 's/\".*//'|grep '^[a-zA-Z].*'", $out);
-foreach ($out as $k => $v) {
-    $t = str_replace(['.tar.gz', 'nginx-'], '', $v);
-    list($major, $minor, $patch) = explode('.', $t);
-    $n[sprintf('%02s', $major) . sprintf('%02s', $minor) . sprintf('%02s', $patch)] = ['version' => $t, 'file' => $v];
+function latest(){
+    // get current nginx version
+    $n = [];
+    exec("curl -s http://nginx.org/download/|grep \"tar.gz<\"|grep nginx|sed 's/.*href=\"//'|sed 's/\".*//'|grep '^[a-zA-Z].*'", $out);
+    foreach ($out as $k => $v) {
+        $t = str_replace(['.tar.gz', 'nginx-'], '', $v);
+        list($major, $minor, $patch) = explode('.', $t);
+        $n[sprintf('%02s', $major) . sprintf('%02s', $minor) . sprintf('%02s', $patch)] = ['version' => $t, 'file' => $v];
+    }
+    ksort($n);
+    $lv=end($n);
+    if(empty($lv)){
+        die('failed to get the latest version from nginx.org');
+    }
+    return $lv;
 }
-ksort($n);
-$lv = end($n);
 
+$lv=latest();
 $downloadurl = 'http://nginx.org/download/' . $lv['file'];
 
-ask("Latest available NGINX is:" . PHP_EOL . "\t**********\t{$lv['version']}" . PHP_EOL . "Continue building {$downloadurl} ? (y|n)" . PHP_EOL, true);
+if(!$quiet){
+    ask("Latest available NGINX is:" . PHP_EOL . "\t**********\t{$lv['version']}" . PHP_EOL . "Continue building {$downloadurl} ? (y|n)" . PHP_EOL, true);
 
-// ask to change server string.
+    // ask to change server string.
 
-$server = trim(ask("Change the server string (nginx) to:"));
+    $server = trim(ask("Change the server string (nginx) to:"));
 
-if (!$build_push = ask('Build push stream module from http://github.com/wandenberg/nginx-push-stream-module.git?(y|n)', true, false)) {
-    echo 'Skipping.' . PHP_EOL;
-};
-if (!$build_sticky = ask('Build sticky upstream module from https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng?(y|n)', true, false)) {
-    echo 'Skipping.' . PHP_EOL;
-}
-if (!$build_init = ask('Build sysvinit script from https://github.com/Fleshgrinder/nginx-sysvinit-script.git? (y|n)', true, false)) {
-    echo 'Skipping.' . PHP_EOL;
+    if (!$build_push = ask('Build push stream module from http://github.com/wandenberg/nginx-push-stream-module.git?(y|n)', true, false)) {
+        echo 'Skipping.' . PHP_EOL;
+    };
+    if (!$build_sticky = ask('Build sticky upstream module from https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng?(y|n)', true, false)) {
+        echo 'Skipping.' . PHP_EOL;
+    }
+    if (!$build_init = ask('Build sysvinit script from https://github.com/Fleshgrinder/nginx-sysvinit-script.git? (y|n)', true, false)) {
+        echo 'Skipping.' . PHP_EOL;
+    }
+}else{
+    $build_push=true;
+    $build_sticky=true;
+    $build_init=true;
+    $server=null;
 }
 
 $build_dir_ngx = $build_dir . DIRECTORY_SEPARATOR . 'nginx-' . $lv['version'];
@@ -117,7 +150,6 @@ chdir($build_dir);
 chdir($build_dir_ngx);
 
 if (!empty($server) && strlen($server) > 0) {
-
     $patch1 = '--- src/http/ngx_http_header_filter_module.c
 +++ src/http/ngx_http_header_filter_module.c
 @@ -46,8 +46,8 @@
@@ -195,7 +227,6 @@ if (!file_exists('/var/cache/nginx')) {
 }
 
 echo "Recommendation: set worker_processes to ";
-
 echo `grep processor /proc/cpuinfo | wc -l`;
 
 exit(PHP_EOL);
