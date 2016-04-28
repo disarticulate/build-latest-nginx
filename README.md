@@ -23,13 +23,18 @@ It takes less than a minute to download and build everything.
 
  2. Review the configure lines. You might want to add/remove modules/options.
 
- 3. Run <code>buildngx.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
- 4. :pray:
+ 3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for push & sticky modules and what server string you want, unless -q is specified.
+ 
+ 4.  If compile is ok, it will ask to <code>make install</code>.
+ 
+ 5. Startup script is downloaded but not installed. If you need it, run "make install" in the directory specified by the script.
+ 
+ 5. :pray:
 
 ### Options:
 Option | Meaning
 ------------ | -------------
-  -q, --q | Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified.
+  -q, --q | Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified. Ask only for <code>make install</code> at the end.
   -p, --p | Show latest version of nginx from nginx.org and exit
   -s, --s | Set server string to:
   -h, --h | Show help and exit
