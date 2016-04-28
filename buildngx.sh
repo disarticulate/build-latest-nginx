@@ -69,7 +69,7 @@ if(isset($options['h'])){
     echo "-p, --p  Show latest available nginx version and exit".PHP_EOL;
     echo "-q, --q  Don't ask any questions. Build all modules, do not change server string.".PHP_EOL;
     echo "-s, --s  Set server string to:".PHP_EOL;
-    exit();
+    exit(0);
 }
 
 
