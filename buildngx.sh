@@ -52,7 +52,7 @@ $configure = "./configure \
 */
 
 
-$options=getopt("sqh",['s','q','h']);
+$options=getopt("sqhp",['s','q','h','p']);
 
 $quiet      =   isset($options['q']);
 $showonly   =   isset($options['p']);
