@@ -23,18 +23,21 @@ It takes less than a minute to download and build everything.
 
  2. Review the configure lines. You might want to add/remove modules/options.
 
- 3. Run <code>php buildngx.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
+ 3. Run <code>buildngx.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
 
 
 ### Options:
+Option | Meaning
+------------ | -------------
 
-  -q, --q  Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified.
+  -q, --q | Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified.
 
-  -p, --p  Show latest version of nginx from nginx.org and exit
+  -p, --p | Show latest version of nginx from nginx.org and exit
 
-  -s, --s  Set server string to:
+  -s, --s | Set server string to:
 
-  -h, --h  Show help and exit
+  -h, --h | Show help and exit
+
 
 ### Notes:
 
