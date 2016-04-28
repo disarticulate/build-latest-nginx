@@ -1,6 +1,5 @@
-language: bash
-sudo: false
-dist: trusty
+language: php
+
 script:
     - php buildngx.sh  -h
 php:
