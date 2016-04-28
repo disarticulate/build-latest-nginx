@@ -1,6 +1,6 @@
 language: php
 
 script:
-    - php buildngx.sh  -h
+    - php buildngx.sh  -p
 php:
   - '5.6'
