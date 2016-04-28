@@ -1,6 +1,5 @@
 language: php
-before_script:
-  - phpenv config-rm xdebug.ini
+
 script:
     - php buildngx.sh  -p
 php:
