@@ -29,7 +29,6 @@ It takes less than a minute to download and build everything.
 ### Options:
 Option | Meaning
 ------------ | -------------
-
   -q, --q | Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified.
 
   -p, --p | Show latest version of nginx from nginx.org and exit
