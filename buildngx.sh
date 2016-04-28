@@ -60,7 +60,8 @@ $server=!empty($options['s'])?$options['s']:false;
 
 if($showonly){
     echo latest()['version'];
-    exit(PHP_EOL);
+    echo(PHP_EOL);
+    exit(0);
 }
 
 if(isset($options['h'])){
