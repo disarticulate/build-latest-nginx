@@ -15,26 +15,6 @@
 
 $build_dir = '/opt/nginxsrc';  // where this script should operate.
 
-$options=getopt("sqh",['s','q','h']);
-
-$quiet      =   isset($options['q']);
-$showonly   =   isset($options['p']);
-$server=!empty($options['s'])?$options['s']:false;
-
-if($showonly){
-    echo latest()['version'];
-    exit(PHP_EOL);
-}
-
-if(isset($options['h'])){
-    echo "Options:".PHP_EOL;
-    echo "-h, --h  this message.".PHP_EOL;
-    echo "-p, --p  Show latest available nginx version and exit".PHP_EOL;
-    echo "-q, --q  Don't ask any questions. Build all modules, do not change server string.".PHP_EOL;
-    echo "-s, --s  Set server string to:".PHP_EOL;
-    exit();
-}
-
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
 
@@ -71,6 +51,26 @@ $configure = "./configure \
 ------------------------------------------------------------------------------
 */
 
+
+$options=getopt("sqh",['s','q','h']);
+
+$quiet      =   isset($options['q']);
+$showonly   =   isset($options['p']);
+$server=!empty($options['s'])?$options['s']:false;
+
+if($showonly){
+    echo latest()['version'];
+    exit(PHP_EOL);
+}
+
+if(isset($options['h'])){
+    echo "Options:".PHP_EOL;
+    echo "-h, --h  this message.".PHP_EOL;
+    echo "-p, --p  Show latest available nginx version and exit".PHP_EOL;
+    echo "-q, --q  Don't ask any questions. Build all modules, do not change server string.".PHP_EOL;
+    echo "-s, --s  Set server string to:".PHP_EOL;
+    exit();
+}
 
 
 function ask($q, $yn = false, $abort = true)
@@ -144,11 +144,11 @@ if (file_exists($build_dir_ngx)) {
     $stamp = time();
     `mv $build_dir_ngx $build_dir_ngx.'_old_'.$stamp`;
 }
-mkdir($build_dir_ngx, 0664, true);
+mkdir($build_dir_ngx, 0664, true) or die('Failed to create '.$build_dir_ngx.PHP_EOL);
 
-chdir($build_dir);
+chdir($build_dir) or die('failed to change direcory to '.$build_dir.PHP_EOL);
 `curl {$downloadurl}|tar xz`;
-chdir($build_dir_ngx);
+chdir($build_dir_ngx) or die('failed to change direcory to '.$build_dir_ngx.PHP_EOL);
 
 if (!empty($server) && strlen($server) > 0) {
     $patch1 = '--- src/http/ngx_http_header_filter_module.c
@@ -221,10 +221,6 @@ if ($build_init) {
     echo "INIT script downloaded at:", PHP_EOL;
     echo $build_dir_ngx . DIRECTORY_SEPARATOR . 'nginx-sysvinit-script', PHP_EOL;
     echo 'To install, go there and type "make"', PHP_EOL;
-}
-
-if (!file_exists('/var/cache/nginx')) {
-    echo "WARNING: /var/cache/nginx does not exits. You might need to create it by hand, or nginx will not start", PHP_EOL;
 }
 
 echo "Recommendation: set worker_processes to ";

@@ -25,9 +25,8 @@ It takes less than a minute to download and build everything.
 
  3. Run <code>php buildngx.sh</code> and answer the questions. It will ask for push & sticky modules and what server string you want.
 
-Please make sure that  <code>/var/cache/nginx</code> exists, if you are going to start  the server for first time.
 
- ### Options:
+### Options:
 
   -q, --q  Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified.
 
@@ -36,3 +35,7 @@ Please make sure that  <code>/var/cache/nginx</code> exists, if you are going to
   -s, --s  Set server string to:
 
   -h, --h  Show help and exit
+
+### Notes:
+
+If you run this script on virgin system, i.e. nginx was not installed before, make sure  directory specified for cache in configure script exists, before attempting to start nginx.
