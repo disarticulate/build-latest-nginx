@@ -1,8 +1,8 @@
 #!/usr/bin/php
 <?php
-/*    
+/*
 *       https://github.com/p34eu/debian-latest-nginx
-*       
+*
 *       Check  build dir and configure options.
 *       Change as you need. do not leave empty lines, leave space before ending \
 *
@@ -18,8 +18,8 @@ $build_dir = '/opt/nginxsrc';  // where this script should operate.
 $options=getopt("sqh",['s','q','h']);
 
 $quiet      =   isset($options['q']);
-$showonly   =   isset($options['s']);
-
+$showonly   =   isset($options['p']);
+$server=!empty($options['s'])?$options['s']:false;
 
 if($showonly){
     echo latest()['version'];
@@ -29,8 +29,10 @@ if($showonly){
 if(isset($options['h'])){
     echo "Options:".PHP_EOL;
     echo "-h, --h  this message.".PHP_EOL;
-    echo "-s, --s  Show latest available nginx version and exit".PHP_EOL;
+    echo "-p, --p  Show latest available nginx version and exit".PHP_EOL;
     echo "-q, --q  Don't ask any questions. Build all modules, do not change server string.".PHP_EOL;
+    echo "-s, --s  Set server string to:".PHP_EOL;
+    exit();
 }
 
 $push_str = '';     //leave empty.
@@ -116,9 +118,9 @@ if(!$quiet){
     ask("Latest available NGINX is:" . PHP_EOL . "\t**********\t{$lv['version']}" . PHP_EOL . "Continue building {$downloadurl} ? (y|n)" . PHP_EOL, true);
 
     // ask to change server string.
-
-    $server = trim(ask("Change the server string (nginx) to:"));
-
+    if($server==false){
+      $server = trim(ask("Change the server string (nginx) to:"));
+    }
     if (!$build_push = ask('Build push stream module from http://github.com/wandenberg/nginx-push-stream-module.git?(y|n)', true, false)) {
         echo 'Skipping.' . PHP_EOL;
     };
@@ -132,7 +134,6 @@ if(!$quiet){
     $build_push=true;
     $build_sticky=true;
     $build_init=true;
-    $server=null;
 }
 
 $build_dir_ngx = $build_dir . DIRECTORY_SEPARATOR . 'nginx-' . $lv['version'];
