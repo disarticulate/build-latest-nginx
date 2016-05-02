@@ -15,7 +15,7 @@
 
 $build_dir          =   '/opt/nginxsrc';  // where this script should operate.
 
-$install_systemd    =   false; //install systemd service file?
+$install_systemd    =   true; //install systemd service file?
 
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
@@ -262,13 +262,13 @@ if ($build_init) {
 if($install_systemd ){
     if(file_exists('/lib/systemd/system/nginx.service')){
         echo PHP_EOL.'/lib/systemd/system/nginx.service EXISTS'.PHP_EOL; 
-    }else{
-        
-        file_put_contents('/lib/systemd/system/nginx.service',$systemdconf);
-        
+    }else{        
+        file_put_contents('/lib/systemd/system/nginx.service',$systemdconf);        
         passthru('systemctl daemon-reload');
         passthru('systemctl enable nginx.service');
+        passthru('systemctl unmask nginx.service');
         passthru('systemctl start nginx.service');
+        passthru('systemctl status nginx');
         
         
     }
