@@ -111,8 +111,7 @@ if(isset($options['h'])){
 }
 
 
-function ask($q, $yn = false, $abort = true)
-{
+function ask($q, $yn = false, $abort = true){
     echo $q . PHP_EOL;
     $handle = fopen("php://stdin", "r");
     $line = fgets($handle);
@@ -179,9 +178,11 @@ $build_dir_ngx = $build_dir . DIRECTORY_SEPARATOR . 'nginx-' . $lv['version'];
 echo PHP_EOL,"Diving to ", $build_dir_ngx, PHP_EOL;
 
 if (file_exists($build_dir_ngx)) {
+    
     $stamp = time();
     `mv $build_dir_ngx $build_dir_ngx.'_old_'.$stamp`;
 }
+
 mkdir($build_dir_ngx, 0664, true) or die('Failed to create '.$build_dir_ngx.PHP_EOL);
 
 chdir($build_dir) or die('failed to change direcory to '.$build_dir.PHP_EOL);

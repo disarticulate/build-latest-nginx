@@ -43,5 +43,5 @@ Option | Meaning
 ### Notes:
 
 If you run this script on virgin system, i.e. nginx was not installed before, make sure  directory specified for cache in configure script exists, before attempting to start nginx.
-Also, have look at provided etc/ subfolder, where are the common files from debian package, i.e. for logrotate and /etc/default
+Also, have look at provided etc/ subfolder, where are the important files from debian package, i.e. for logrotate and /etc/default
  
