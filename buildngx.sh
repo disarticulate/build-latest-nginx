@@ -51,21 +51,35 @@ $configure          =   "./configure \
 --with-stream";
 
 // /lib/systemd/system/nginx.service
-$systemdconf='[Unit]
-Description=The NGINX HTTP and reverse proxy server
-After=syslog.target network.target remote-fs.target nss-lookup.target
+$systemdconf="# Stop dance for nginx
+# =======================
+#
+# ExecStop sends SIGSTOP (graceful stop) to the nginx process.
+# If, after 5s (--retry QUIT/5) nginx is still running, systemd takes control
+# and sends SIGTERM (fast shutdown) to the main process.
+# After another 5s (TimeoutStopSec=5), and if nginx is alive, systemd sends
+# SIGKILL to all the remaining processes in the process group (KillMode=mixed).
+#
+# nginx signals reference doc:
+# http://nginx.org/en/docs/control.html
+#
+[Unit]
+Description=A high performance web server and a reverse proxy server
+After=network.target
 
 [Service]
 Type=forking
 PIDFile=/var/run/nginx.pid
-ExecStartPre=/usr/sbin/nginx -t
-ExecStart=/usr/sbin/nginx
-ExecReload=/bin/kill -s HUP $MAINPID
-ExecStop=/bin/kill -s QUIT $MAINPID
-PrivateTmp=true
+ExecStartPre=/usr/sbin/nginx -t -q -g 'daemon on; master_process on;'
+ExecStart=/usr/sbin/nginx -g 'daemon on; master_process on;'
+ExecReload=/usr/sbin/nginx -g 'daemon on; master_process on;' -s reload
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx.pid
+TimeoutStopSec=5
+KillMode=mixed
 
 [Install]
-WantedBy=multi-user.target';
+WantedBy=multi-user.target
+";
 
 
 /*                            end of config
@@ -249,7 +263,14 @@ if($install_systemd ){
     if(file_exists('/lib/systemd/system/nginx.service')){
         echo PHP_EOL.'/lib/systemd/system/nginx.service EXISTS'.PHP_EOL; 
     }else{
+        
         file_put_contents('/lib/systemd/system/nginx.service',$systemdconf);
+        
+        passthru('systemctl daemon-reload');
+        passthru('systemctl enable nginx.service');
+        passthru('systemctl start nginx.service');
+        
+        
     }
 }
 echo "Recommendation: set worker_processes to ";
