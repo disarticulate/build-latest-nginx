@@ -1,6 +1,6 @@
 # debian-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/debian-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/debian-latest-nginx)
 
- Script to download and build at once:
+ Script to download and build at once :
 
   *  <a href="http://nginx.org/download">nginx</a>
 
@@ -8,15 +8,13 @@
 
   *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx-sticky-module</a> (optional)
 
-  *  <a href="https://github.com/Fleshgrinder/nginx-sysvinit-script.git">sysvinit script for debian</a> (optional)
-
-
 Optionally it allows to change the <b>server string</b> returned in http headers.
 
 It takes less than a minute to download and build everything.
 
 Tested on Debian 8.4 (jessie). It is assumed that build-essentials are installed. 
-         apt-get install build-essentials 
+          <code>apt-get install build-essentials</code>
+         
 
 
 ### Usage:
@@ -27,11 +25,11 @@ Tested on Debian 8.4 (jessie). It is assumed that build-essentials are installed
 
  3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for push & sticky modules and what server string you want, unless -q is specified.
  
- 4.  If compile is ok, it will ask to <code>make install</code>.
+ 4. If compile is ok, it will ask to <code>make install</code>.
  
- 5. Startup script is downloaded but not installed. If you need it, run "make install" in the directory specified by the script.
+ 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. If you not, they will be installed, unless answer is no.
  
- 5. :pray:
+
 
 ### Options:
 Option | Meaning

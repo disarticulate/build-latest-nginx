@@ -12,10 +12,12 @@
 *
 *
 */
+$current_dir=getcwd();
 
 $build_dir          =   '/opt/nginxsrc';  // where this script should operate.
 
-$install_systemd    =   true; //install systemd service file?
+$install_systemd    =   true; //install systemd service file? Valid when -s
+
 
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
@@ -163,7 +165,7 @@ if(!$quiet){
     if (!$build_sticky = ask('Build sticky upstream module from https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng?(y|n)', true, false)) {
         echo 'Skipping.' . PHP_EOL;
     }
-    if (!$build_init = ask('Build sysvinit script from https://github.com/Fleshgrinder/nginx-sysvinit-script.git? (y|n)', true, false)) {
+    if (!$build_init = ask('Install /etc/init.d/nginx and systemd files? (y|n)', true, false)) {
         echo 'Skipping.' . PHP_EOL;
     }
 }else{
@@ -252,27 +254,33 @@ if(ask("Configure done. Do you want to install it (make install) ?".PHP_EOL.$nor
 }
 
 if ($build_init) {
-    chdir($build_dir_ngx);
-    passthru('git clone https://github.com/Fleshgrinder/nginx-sysvinit-script.git');
-    echo "INIT script downloaded at:", PHP_EOL;
-    echo $build_dir_ngx . DIRECTORY_SEPARATOR . 'nginx-sysvinit-script', PHP_EOL;
-    echo 'To install, go there and type "make"', PHP_EOL;
-}
+    
+    if(!file_exists('/etc/init.d/nginx') and file_exists($current_dir.'/etc/init.d/nginx')){
+        
+        copy($current_dir.'/etc/init.d/nginx','/etc/init.d/nginx');
+        passthru('update-rc.d nginx defaults');
+        passthru('invoke-rc.d nginx configtest');
+        
+    }else{
+        echo PHP_EOL."Skipping init script creation.".PHP_EOL;
+    }
 
-if($install_systemd ){
-    if(file_exists('/lib/systemd/system/nginx.service')){
-        echo PHP_EOL.'/lib/systemd/system/nginx.service EXISTS'.PHP_EOL; 
-    }else{        
-        file_put_contents('/lib/systemd/system/nginx.service',$systemdconf);        
-        passthru('systemctl daemon-reload');
-        passthru('systemctl enable nginx.service');
-        passthru('systemctl unmask nginx.service');
-        passthru('systemctl start nginx.service');
-        passthru('systemctl status nginx');
-        
-        
+    if($install_systemd ){
+                
+        if(file_exists('/lib/systemd/system/nginx.service')){
+            echo PHP_EOL.'/lib/systemd/system/nginx.service EXISTS'.PHP_EOL; 
+        }else{        
+            file_put_contents('/lib/systemd/system/nginx.service',$systemdconf);        
+            passthru('systemctl daemon-reload');
+            passthru('systemctl enable nginx.service');
+            passthru('systemctl unmask nginx.service');
+            passthru('systemctl start nginx.service');
+            passthru('systemctl status nginx');       
+        }
     }
 }
+
+
 echo "Recommendation: set worker_processes to ";
 echo `grep processor /proc/cpuinfo | wc -l`;
 
