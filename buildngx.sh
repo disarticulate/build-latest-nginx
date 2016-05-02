@@ -274,7 +274,6 @@ if ($build_init) {
             passthru('systemctl daemon-reload');
             passthru('systemctl enable nginx.service');
             passthru('systemctl unmask nginx.service');
-            passthru('systemctl start nginx.service');
             passthru('systemctl status nginx');       
         }
     }
