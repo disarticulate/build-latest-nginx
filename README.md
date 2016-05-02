@@ -13,8 +13,10 @@
 
 Optionally it allows to change the <b>server string</b> returned in http headers.
 
-
 It takes less than a minute to download and build everything.
+
+Tested on Debian 8.4 (jessie). It is assumed that build-essentials are installed. 
+         apt-get install build-essentials 
 
 
 ### Usage:

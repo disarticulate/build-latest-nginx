@@ -13,17 +13,20 @@
 *
 */
 
-$build_dir = '/opt/nginxsrc';  // where this script should operate.
+$build_dir          =   '/opt/nginxsrc';  // where this script should operate.
+
+$install_systemd    =   false; //install systemd service file?
 
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
 
-$configure = "./configure \
+$configure          =   "./configure \
 --prefix=/etc/nginx \
 --sbin-path=/usr/sbin/nginx \
 --modules-path=/usr/lib/nginx/modules \
 --conf-path=/etc/nginx/nginx.conf \
---pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock \
+--pid-path=/var/run/nginx.pid \
+--lock-path=/var/run/nginx.lock \
 --error-log-path=/var/log/nginx/error.log \
 --http-log-path=/var/log/nginx/access.log \
 --http-client-body-temp-path=/var/cache/nginx/client_temp \
@@ -46,6 +49,24 @@ $configure = "./configure \
 --with-http_v2_module $push_str $st_str  --with-file-aio \
 --with-threads \
 --with-stream";
+
+// /lib/systemd/system/nginx.service
+$systemdconf='[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target';
+
 
 /*                            end of config
 ------------------------------------------------------------------------------
@@ -224,6 +245,13 @@ if ($build_init) {
     echo 'To install, go there and type "make"', PHP_EOL;
 }
 
+if($install_systemd ){
+    if(file_exists('/lib/systemd/system/nginx.service')){
+        echo PHP_EOL.'/lib/systemd/system/nginx.service EXISTS'.PHP_EOL; 
+    }else{
+        file_put_contents('/lib/systemd/system/nginx.service',$systemdconf);
+    }
+}
 echo "Recommendation: set worker_processes to ";
 echo `grep processor /proc/cpuinfo | wc -l`;
 
