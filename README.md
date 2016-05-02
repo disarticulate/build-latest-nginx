@@ -27,7 +27,7 @@ Tested on Debian 8.4 (jessie). It is assumed that build-essentials are installed
  
  4. If compile is ok, it will ask to <code>make install</code>.
  
- 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. If you not, they will be installed, unless answer is no. Provided configure options respond to debian defaults.
+ 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. If you not, they will be installed, unless answer is no. Provided configure options correspond to debian defaults.
  
 
 
@@ -43,3 +43,5 @@ Option | Meaning
 ### Notes:
 
 If you run this script on virgin system, i.e. nginx was not installed before, make sure  directory specified for cache in configure script exists, before attempting to start nginx.
+Also, have look at provided etc/ subfolder, where are the common files from debian package, i.e. for logrotate and /etc/default
+ 
