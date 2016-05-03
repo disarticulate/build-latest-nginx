@@ -267,7 +267,7 @@ passthru('make');
 $nor=$_SERVER['USERNAME']=='root'?"":"Please make sure that your user {$_SERVER['USERNAME']} can write to the install destinations.";
 
 if(ask("Configure done. Do you want to install it (make install) ?".PHP_EOL.$nor.PHP_EOL."(y|n)", 1,0)){
-    mkdir($cache_dir,600);
+    mkdir($cache_dir);
     passthru('make install');
 }else{
     echo "Not installing. To install or examine code, go to:".PHP_EOL.$build_dir_ngx.PHP_EOL;
