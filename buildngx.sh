@@ -16,7 +16,7 @@ $current_dir=getcwd();
 
 $build_dir          =   '/opt/nginxsrc';  // where this script should operate.
 
-$install_systemd    =   true; //install systemd service file? Valid when -s
+$install_systemd    =   false; //install systemd service file? Valid when -s.
 
 
 $push_str = '';     //leave empty.
@@ -78,6 +78,21 @@ ExecReload=/usr/sbin/nginx -g 'daemon on; master_process on;' -s reload
 ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx.pid
 TimeoutStopSec=5
 KillMode=mixed
+
+#OPTIONAL,  READ THE DOCS FIRST:
+
+#The service gets its own instance of /var,/tmp
+PrivateTmp=true
+
+#Only exposes API pseudo-devices (/dev/nukk,zero,random)
+PrivateDevices=true
+
+#makes /usr/,boot and /etc read-only
+ProtectSystem=full
+
+#Prevents access to /home, /root, and /run/user
+ProtectHome=true
+
 
 [Install]
 WantedBy=multi-user.target
