@@ -18,9 +18,11 @@ $build_dir          =   '/opt/nginxsrc';  // where this script should operate.
 
 $install_systemd    =   false; //install systemd service file? Valid when -s.
 
+$cache_dir          =   "/var/cache/nginx";
 
 $push_str = '';     //leave empty.
 $st_str = '';       //leave empty.
+
 
 $configure          =   "./configure \
 --prefix=/etc/nginx \
@@ -31,11 +33,11 @@ $configure          =   "./configure \
 --lock-path=/var/run/nginx.lock \
 --error-log-path=/var/log/nginx/error.log \
 --http-log-path=/var/log/nginx/access.log \
---http-client-body-temp-path=/var/cache/nginx/client_temp \
---http-proxy-temp-path=/var/cache/nginx/proxy_temp \
---http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
---http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
---http-scgi-temp-path=/var/cache/nginx/scgi_temp \
+--http-client-body-temp-path={$cache_dir}/client_temp \
+--http-proxy-temp-path={$cache_dir}/proxy_temp \
+--http-fastcgi-temp-path={$cache_dir}/fastcgi_temp \
+--http-uwsgi-temp-path={$cache_dir}/uwsgi_temp \
+--http-scgi-temp-path={$cache_dir}/scgi_temp \
 --user=www-data --group=www-data \
 --with-http_ssl_module \
 --with-stream_ssl_module \
@@ -265,6 +267,7 @@ passthru('make');
 $nor=$_SERVER['USERNAME']=='root'?"":"Please make sure that your user {$_SERVER['USERNAME']} can write to the install destinations.";
 
 if(ask("Configure done. Do you want to install it (make install) ?".PHP_EOL.$nor.PHP_EOL."(y|n)", 1,0)){
+    mkdir($cache_dir,600);
     passthru('make install');
 }else{
     echo "Not installing. To install or examine code, go to:".PHP_EOL.$build_dir_ngx.PHP_EOL;
