@@ -27,7 +27,7 @@ Tested on Debian 8.4 (jessie). It is assumed that build-essentials are installed
  
  4. If compile is ok, it will ask to <code>make install</code>.
  
- 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. If you not, they will be installed, unless answer is no. Provided configure options correspond to debian defaults.
+ 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. If not, they will be installed, unless answer is no. Provided configure options correspond to debian defaults. Systemd service file contains some standart systemd unit features added on top of the default debian ones. Please review them.
  
 
 
