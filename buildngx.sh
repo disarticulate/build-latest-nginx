@@ -52,7 +52,8 @@ $configure          =   "./configure \
 --with-threads \
 --with-stream";
 
-// /lib/systemd/system/nginx.service
+# /lib/systemd/system/nginx.service
+
 $systemdconf="# Stop dance for nginx
 # =======================
 #
