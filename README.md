@@ -51,8 +51,6 @@ Also, have look at provided etc/ subfolder, where are the important files from d
  
 ### Example output of nginx -V
 <code><pre>
-#nginx -V
-
 nginx version: nginx/1.10.0
 built by gcc 4.9.2 (Debian 4.9.2-10) 
 built with OpenSSL 1.0.1k 8 Jan 2015
