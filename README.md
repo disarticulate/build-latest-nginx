@@ -47,4 +47,4 @@ Also, have look at provided etc/ subfolder, where are the important files from d
 ### FAQ:
  Q. Why is this?
 
- A. Main reason: enable/disable modules at compile time and play with the latest version.
+ A. Main reason: enable/disable modules at compile time and try the latest version.
