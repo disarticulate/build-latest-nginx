@@ -57,7 +57,9 @@ nginx version: nginx/1.10.0
 built by gcc 4.9.2 (Debian 4.9.2-10) 
 built with OpenSSL 1.0.1k 8 Jan 2015
 TLS SNI support enabled
-configure arguments: --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib/nginx/modules
+configure arguments: --prefix=/etc/nginx 
+--sbin-path=/usr/sbin/nginx 
+--modules-path=/usr/lib/nginx/modules
 --conf-path=/etc/nginx/nginx.conf
 --pid-path=/var/run/nginx.pid
 --lock-path=/var/run/nginx.lock
