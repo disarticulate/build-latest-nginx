@@ -20,7 +20,7 @@ Tested on Debian 8.4 (jessie). Required packages:  <code>build-essentials libpcr
 
  1. Clone this repo or download the script via curl/wget. <i>Do not copy/paste it from browser.</i>
 
- 2. Review the configure lines. You might want to add/remove modules/options.
+ 2. Review the configure lines inside <code>buildngx.sh</code>. You might want to <b>add/remove</b> modules/options.
 
  3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for push & sticky modules and what server string you want, unless -q is specified.
  
