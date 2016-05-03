@@ -275,6 +275,7 @@ if ($build_init) {
     if(!file_exists('/etc/init.d/nginx') and file_exists($current_dir.'/etc/init.d/nginx')){
         
         copy($current_dir.'/etc/init.d/nginx','/etc/init.d/nginx');
+        passthru('chmod +x /etc/init.d/nginx');
         passthru('update-rc.d nginx defaults');
         passthru('invoke-rc.d nginx configtest');
         
