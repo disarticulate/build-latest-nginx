@@ -50,7 +50,7 @@ Also, have look at provided etc/ subfolder, where are the important files from d
  A. Main reason: enable/disable modules at compile time and play with the latest version.
  
 ### Example output of nginx -V
-<code><pre>
+<pre>
 nginx version: nginx/1.10.0
 built by gcc 4.9.2 (Debian 4.9.2-10) 
 built with OpenSSL 1.0.1k 8 Jan 2015
@@ -85,4 +85,4 @@ configure arguments: --prefix=/etc/nginx
 --with-file-aio
 --with-threads 
 --with-stream
-</pre></code>
+</pre>
