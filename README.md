@@ -45,5 +45,6 @@ If you run this script on virgin system, i.e. nginx was not installed before, ma
 Also, have look at provided etc/ subfolder, where are the important files from debian package, i.e. for logrotate and /etc/default
  
 ### FAQ:
-Q. Why is this?
-A. Main reason: enable/disable modules at compile time and play with the latest version.
+ Q. Why is this?
+
+ A. Main reason: enable/disable modules at compile time and play with the latest version.
