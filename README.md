@@ -12,7 +12,11 @@ Optionally it allows to change the <b>server string</b> returned in http headers
 
 It takes less than a minute to download and build everything.
 
-Tested on Debian 8.4 (jessie). Required packages:  <code>build-essentials libpcre3-dev  libssl-dev curl php5-cli libgeoip-dev libxslt1-dev </code> (apt-get install)
+Tested on Debian 8.4 (jessie). 
+
+Required packages:  (apt-get install)
+
+<code>build-essential libpcre3-dev  libssl-dev curl php5-cli libgeoip-dev libxslt1-dev </code>
          
 
 
