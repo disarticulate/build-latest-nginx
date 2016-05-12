@@ -260,18 +260,32 @@ if ($build_sticky) {
 $push_str = $build_push ? " --add-module=$build_dir_ngx/nginx-push-stream-module " : "";
 
 $st_str = $build_sticky ? " --add-module=$build_dir_ngx/nginx-goodies-nginx-sticky-module " : "";
+ 
+system($configure,$s1);       
+if(!$s1==0){    
+    echo "Aborted!".PHP_EOL;
+    die();
+}
 
-passthru($configure);
-passthru('make');
-
+system('make',$s2);           
+if(!$s2==0){        
+    echo "Aborted!".PHP_EOL;            
+    die();                    
+}                        
+                        
+                                        
 $nor=$_SERVER['USERNAME']=='root'?"":"Please make sure that your user {$_SERVER['USERNAME']} can write to the install destinations.";
 
 if(ask("Configure done. Do you want to install it (make install) ?".PHP_EOL.$nor.PHP_EOL."(y|n)", 1,0)){
     mkdir($cache_dir);
-    passthru('make install');
-}else{
+    system('make install',$s3);      
+    if(!$s3==0){        
+        echo "Aborted!".PHP_EOL;
+        die();
+    }
+}else{                                          
     echo "Not installing. To install or examine code, go to:".PHP_EOL.$build_dir_ngx.PHP_EOL;
-}
+}                
 
 if ($build_init) {
     
