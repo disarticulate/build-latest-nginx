@@ -4,11 +4,11 @@
 
   *  <a href="http://nginx.org/download">NGINX for linux</a>
 
-  *  <a href="https://developers.google.com/speed/pagespeed/module/">nginx page speed module</a>  
+  *  <a href="https://developers.google.com/speed/pagespeed/module/">page speed module</a>  
 
-  *  <a href="http://github.com/wandenberg/nginx-push-stream-module.git">nginx push stream module</a> (optional)
+  *  <a href="http://github.com/wandenberg/nginx-push-stream-module.git">push stream module</a> 
 
-  *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx sticky module</a> (optional)
+  *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng"> sticky module</a> 
 
   
 Optionally it allows to change the <b>server string</b> returned in http headers.
