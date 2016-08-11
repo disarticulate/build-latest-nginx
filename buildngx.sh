@@ -376,5 +376,7 @@ if($install_systemd ){
 
 echo "Recommendation: set worker_processes to ";
 echo `grep processor /proc/cpuinfo | wc -l`;
-echo "Don't forget to restart the nginx. I.e. service nginx restart'"
+
+echo "Don't forget to restart the nginx. I.e. service nginx restart'";
+
 exit(PHP_EOL);
