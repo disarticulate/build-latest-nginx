@@ -1,6 +1,6 @@
-# build-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/debian-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/debian-latest-nginx)
+# build-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/build-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/build-latest-nginx)
 
- Tool to download and build:
+ Tool to download and build nginx + custom modules list
 
   *  <a href="http://nginx.org/download">NGINX for linux</a>
 
