@@ -11,7 +11,7 @@
   *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng"> sticky module</a> 
 
   
-Optionally it allows to change the <b>server string</b> returned in http headers.
+Optionally it allows to change the <b>server string returned in http headers</b> .
 
 Tested on Debian 8.4 (jessie). With  small changes works also on Centos.
 
@@ -27,9 +27,9 @@ apt-get install build-essential libpcre3-dev  libssl-dev curl unzip php5-cli lib
 
  1. Clone this repo or download the script  and functions.php via curl/wget. <i>Do not copy/paste it from browser.</i>
 
- 2. Review the configure lines inside <code>buildngx.sh</code>. You might want to <b>add/remove</b> modules/options.
+ 2. Review the configure lines inside <code>buildngx.sh</code>. You might want to <b>add/remove</b> the default modules/options.
 
- 3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for which modules to be made and for server to use, unless -q is specified.
+ 3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for which modules to be made and for <b>server string</b> to use, unless -q is specified.
  
  4. If compile is ok, it will ask to <code>make install</code>.
  
@@ -55,7 +55,7 @@ Option | Meaning
 ### Notes:
 
 If you run this script on virgin system, i.e. nginx was not installed before, make sure  directory specified for cache in configure script exists, 
-before attempting to start nginx. It is also possible to first install debian nginx to create all  structure.
+before attempting to start nginx. It is also possible to first install debian nginx to create all defaults.
  
 ### FAQ:
  Q. Why is this?
