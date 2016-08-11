@@ -1,18 +1,21 @@
-# debian-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/debian-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/debian-latest-nginx)
+# build-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/debian-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/debian-latest-nginx)
 
  Script to download and build at once :
-
+ 
+  *  <a href="https://developers.google.com/speed/pagespeed/module/">page speed module</a>
+  
   *  <a href="http://nginx.org/download">nginx</a>
 
-  *  <a href="http://github.com/wandenberg/nginx-push-stream-module.git">push-stream-module</a> (optional)
+  *  <a href="http://github.com/wandenberg/nginx-push-stream-module.git">push stream module</a> (optional)
 
-  *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx-sticky-module</a> (optional)
+  *  <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx sticky module</a> (optional)
 
+  
 Optionally it allows to change the <b>server string</b> returned in http headers.
 
 It takes less than a minute to download and build everything.
 
-Tested on Debian 8.4 (jessie). 
+Tested on Debian 8.4 (jessie). With  small changes works also on Centos.
 
 Required packages:  (apt-get install)
 
@@ -30,25 +33,31 @@ Required packages:  (apt-get install)
  
  4. If compile is ok, it will ask to <code>make install</code>.
  
- 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. If not, they will be installed, unless answer is no. Provided configure options correspond to debian defaults. Systemd service file contains some standart systemd unit features added on top of the default debian ones. Please review them.
+ 5. If you had nginx before on the same server, systemd and sysv configurations can be used without any change. 
+ If not, they will be installed, unless answer is no. 
+ Provided configure options correspond to debian defaults. 
+ Systemd service file contains some standart systemd unit features added on top of the default debian ones.
+ Please review them.
  
 
 
 ### Options:
 Option | Meaning
 ------------ | -------------
-  -q, --q | Don't ask any questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified. Ask only for <code>make install</code> at the end.
+  -q, --q | Don't ask many questions. Download and build all modules, preserve "nginx" as server string, if -s is not specified. Ask only for <code>make install</code> at the end.
   -p, --p | Show latest version of nginx from nginx.org and exit
+  -r, --r | do not download again sources, just re-run configure and compile process.
   -s, --s | Set server string to:
   -h, --h | Show help and exit
 
 
 ### Notes:
 
-If you run this script on virgin system, i.e. nginx was not installed before, make sure  directory specified for cache in configure script exists, before attempting to start nginx.
-Also, have look at provided etc/ subfolder, where are the important files from debian package, i.e. for logrotate and /etc/default
+If you run this script on virgin system, i.e. nginx was not installed before, make sure  directory specified for cache in configure script exists, 
+before attempting to start nginx. It is also possible to first install debian nginx to create all  structure.
  
 ### FAQ:
  Q. Why is this?
 
- A. Main reason: enable/disable modules at compile time and try the latest version.
+ A. Most of the comunity NGINX modules can only be enabled / disabled by recompiling NGINX. 
+ 
