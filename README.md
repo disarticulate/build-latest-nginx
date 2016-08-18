@@ -1,6 +1,6 @@
 # build-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/build-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/build-latest-nginx)
 
- Tool to download and build nginx + custom <h3><u>dynamic</u></h3> modules  
+ Tool to download and build nginx + custom <b><u>dynamic</u></b> modules  
 
   *     <a href="http://nginx.org/download">NGINX for linux</a>
   *     <a href="https://nchan.slact.net/">Nchan</a>  
