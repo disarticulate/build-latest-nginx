@@ -50,7 +50,8 @@ before attempting to start nginx. It is also possible to first install debian ng
 ### FAQ:
  Q. Why is this?
 
- A. Most of the comunity NGINX modules can only be enabled / disabled by recompiling NGINX. This tool was made to speedup collecting sources and building them.There are various precompiled packages, but none of them fits anyone's taste and sometimes updates come with long delays.
+ A. Most of the comunity NGINX modules can only be enabled / disabled by recompiling NGINX. There are various precompiled packages, but none of them fits anyone's taste and sometimes updates come with long delays.
  
  The disadwantage of using own compiled version of nginx is that you will have to keep track of all future updates.
+ This tool is aimed to speedup this task.
  
