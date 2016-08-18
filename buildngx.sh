@@ -155,7 +155,10 @@ if($server==false){
 }
 
 
-system("apt-get -y  install make automake patch gcc geoip-database openssl libhiredis-dev  libssl-dev libpcre3 libpcre3-dev perl-modules libghc-zlib-dev libtool gettext  wget curl build-essential zlib1g-dev libperl-dev libjemalloc-dev python-geoip     libxml2 libxml2-dev libxml2-utils apache2-threaded-dev libcurl3-dev unzip");
+system("apt-get -y  install make automake patch gcc geoip-database openssl libhiredis-dev  libssl-dev libpcre3 
+libpcre3-dev perl-modules libghc-zlib-dev libtool gettext  wget curl build-essential zlib1g-dev libperl-dev 
+libgd2-xpm libgd2-xpm-dev libjemalloc-dev python-geoip libxml2 libxml2-dev libxml2-utils apache2-threaded-dev 
+libcurl3-dev unzip");
 
 echo PHP_EOL,"Diving to ", $build_dir_ngx, PHP_EOL;
 
