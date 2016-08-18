@@ -14,15 +14,7 @@
 
 
 Optionally it allows to change the <b>server string returned in http headers</b> .
-
 Tested on Debian 8.4 (jessie). With  small changes works also on Centos.
-
-Required packages for tool to operate and build above modules:
-
-```sh
-apt-get install build-essential libpcre3-dev  libssl-dev curl unzip php5-cli libgeoip-dev libxslt1-dev
-```
-         
 
 ### Usage:
 
@@ -30,7 +22,11 @@ apt-get install build-essential libpcre3-dev  libssl-dev curl unzip php5-cli lib
 
  2. Review the configure lines inside <code>buildngx.sh</code>. You might want to <b>add/remove</b> the default modules/options.
 
- 3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for which modules to be made and for <b>server string</b> to use, unless -q is specified.
+ 3. Run 
+ ```sh
+ buildngx.sh
+```
+ and answer the questions. It will ask for which modules to be made and for <b>server string</b> to use.
  
  4. If compile is ok, it will ask to <code>make install</code>.
  
