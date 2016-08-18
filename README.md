@@ -1,16 +1,16 @@
 # build-latest-nginx   [![Build Status](https://travis-ci.org/p34eu/build-latest-nginx.svg?branch=master)](https://travis-ci.org/p34eu/build-latest-nginx)
 
- Tool to download and build nginx + custom <b><u>dynamic</u></b> modules  
+ Tool to download and build nginx + custom <h3><u>dynamic</u></h3> modules  
 
   *     <a href="http://nginx.org/download">NGINX for linux</a>
   *     <a href="https://nchan.slact.net/">Nchan</a>  
   *     <a href="https://www.nginx.com/resources/wiki/modules/headers_more/">ngx_headers_more</a>  
   *     <a href="https://www.nginx.com/resources/wiki/modules/fair_balancer/?highlight=upstream%20fair">ngx_http_upstream_fair_module</a> 
   *     <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx_sticky_module</a> 
-  *     geoip_module
-  *     image_filter_module
-  *     perl_module
-  *     xslt_module
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_geoip_module.html">geoip_module</a>
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_image_filter_module.html">image_filter_module</a>
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_perl_module.html">perl_module</a>
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_xslt_module.html">xslt_module</a>
 
 
 Optionally it allows to change the <b>server string returned in http headers</b> .
