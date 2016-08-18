@@ -55,7 +55,6 @@ include 'functions.php';
 $lv                 =   latest();
 
 
-
 $server=!empty($options['s'])?$options['s']:false;
 
 if( isset($options['p'])){
@@ -263,20 +262,29 @@ if(!$s2==0){
     echo "Aborted due to errors!!".PHP_EOL."Make returned exit code: {$s2}".PHP_EOL;            
     die();                    
 }
+if(ask('run make install? (y)',true,0)){
 
+    system('make install',$s3);
 
-system('make install',$s3);      
+    if(!$s3==0){
+        echo "Aborted!".PHP_EOL;
+        die();
+    }else{
+        echo "ALL DONE!".PHP_EOL;
+        echo `2>&1 nginx -V |cut -d "-"  -f1`;
+    }
 
-if(!$s3==0){        
-    echo "Aborted!".PHP_EOL;
-    die();
- }
+}else{
+
+    echo "Compilation is done. Run \"make install\" to install".PHP_EOL;
+}
 
 if(!file_exists($cache_dir)){
     mkdir($cache_dir);
 }
 
 echo "Recommendation: set worker_processes to ";
+
 echo `grep processor /proc/cpuinfo | wc -l`;
 
 echo "Don't forget to restart the nginx. I.e. service nginx restart'";
