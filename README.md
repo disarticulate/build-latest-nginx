@@ -7,22 +7,14 @@
   *     <a href="https://www.nginx.com/resources/wiki/modules/headers_more/">ngx_headers_more</a>  
   *     <a href="https://www.nginx.com/resources/wiki/modules/fair_balancer/?highlight=upstream%20fair">ngx_http_upstream_fair_module</a> 
   *     <a href="https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng">nginx_sticky_module</a> 
-  *     geoip_module
-  *     image_filter_module
-  *     perl_module
-  *     xslt_module
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_geoip_module.html">geoip_module</a>
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_image_filter_module.html">image_filter_module</a>
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_perl_module.html">perl_module</a>
+  *     <a href="http://nginx.org/en/docs/http/ngx_http_xslt_module.html">xslt_module</a>
 
 
 Optionally it allows to change the <b>server string returned in http headers</b> .
-
 Tested on Debian 8.4 (jessie). With  small changes works also on Centos.
-
-Required packages for tool to operate and build above modules:
-
-```sh
-apt-get install build-essential libpcre3-dev  libssl-dev curl unzip php5-cli libgeoip-dev libxslt1-dev
-```
-         
 
 ### Usage:
 
@@ -30,7 +22,11 @@ apt-get install build-essential libpcre3-dev  libssl-dev curl unzip php5-cli lib
 
  2. Review the configure lines inside <code>buildngx.sh</code>. You might want to <b>add/remove</b> the default modules/options.
 
- 3. Run <code>buildngx.sh</code>. and answer the questions. It will ask for which modules to be made and for <b>server string</b> to use, unless -q is specified.
+ 3. Run 
+ ```sh
+ buildngx.sh
+```
+ and answer the questions. It will ask for which modules to be made and for <b>server string</b> to use.
  
  4. If compile is ok, it will ask to <code>make install</code>.
  
@@ -54,5 +50,8 @@ before attempting to start nginx. It is also possible to first install debian ng
 ### FAQ:
  Q. Why is this?
 
- A. Most of the comunity NGINX modules can only be enabled / disabled by recompiling NGINX. This tool was made to speedup collecting sources and building them.
+ A. Most of the comunity NGINX modules can only be enabled / disabled by recompiling NGINX. There are various precompiled packages, but none of them fits anyone's taste and sometimes updates come with long delays.
+ 
+ The disadwantage of using own compiled version of nginx is that you will have to keep track of all future updates.
+ This tool is aimed to speedup this task.
  
