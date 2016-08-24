@@ -49,7 +49,7 @@ chdir('/usr/local/src/');
 
 $current_dir        =   getcwd();
 
-`apt-get  install  make automake patch gcc geoip-database openssl libhiredis-dev  libssl-dev libpcre3 libpcre3-dev perl-modules libghc-zlib-dev libtool gettext  wget curl build-essential zlib1g-dev libperl-dev libgd2-xpm-dev libjemalloc-dev python-geoip libxml2 libxml2-dev libxml2-utils apache2-threaded-dev libcurl3-dev unzip`;
+system("apt-get  install  make automake patch gcc geoip-database openssl libhiredis-dev  libssl-dev libpcre3 libpcre3-dev perl-modules libghc-zlib-dev libtool gettext  wget curl build-essential zlib1g-dev libperl-dev libgd2-xpm-dev libjemalloc-dev python-geoip libxml2 libxml2-dev libxml2-utils apache2-threaded-dev libcurl3-dev unzip");
 
 include 'functions.php';
 
