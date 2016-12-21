@@ -14,11 +14,6 @@
 *
 */
 
-
-
-
-
-
 /******************************************************************************/
 
 $NCHAN_RELEASE="0.99.16";
@@ -54,13 +49,11 @@ if(file_exists('/etc/debian_version')){
 
 }elseif(file_exists('/etc/centos-release')){
     
-    system('yum -y install gcc gcc-c++ make zlib-devel pcre-devel openssl-devel libxslt-devel');
+    system('yum -y install gcc gcc-c++ make zlib-devel pcre-devel openssl-devel libxslt-devel gd-devel perl-ExtUtils-Embed geoip-devel');
 }
 include 'functions.php';
 
 $lv                 =   latest();
-
-
 $server=!empty($options['s'])?$options['s']:false;
 
 if( isset($options['p'])){
